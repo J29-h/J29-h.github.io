@@ -1492,3 +1492,12 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   #splash.play .sp-arc, #splash.play .sp-stars { animation-iteration-count: 1 !important; }
 }
+
+/* the gold circle grows past every edge of the screen (phones scale the art down, so it needs headroom) */
+@keyframes sp-dot {
+  0% { opacity: 0; transform: translate(158.75px, -47px) scale(.011); animation-timing-function: var(--smooth); }
+  18% { opacity: 1; transform: translate(158.75px, -47px) scale(.011); animation-timing-function: cubic-bezier(.7, 0, .2, 1); }
+  62% { opacity: 1; transform: scale(var(--dotmax, 2.2)); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
+  100% { opacity: 1; transform: translate(.5px, -6.5px) scale(0); }
+}
+#stage.m .sp-dot { --dotmax: 3.2; }
