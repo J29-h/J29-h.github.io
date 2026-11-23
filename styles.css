@@ -1437,3 +1437,7 @@ a { color: inherit; }
 .pv-nba .pv-player img { object-position: center; }
 .pv-credit { position: absolute; right: 120px; bottom: 34px; z-index: 3; font-size: 11px; letter-spacing: .08em; color: rgba(255,255,255,.55); }
 #stage.m .pv-credit { right: 20px; bottom: 14px; font-size: 10px; }
+
+/* My Work on phones: just the cards, no scene behind them */
+#stage.m #work .wbgs { display: none; }
+#stage.m #work .clipped::after { display: none; }
