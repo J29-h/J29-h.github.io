@@ -1441,3 +1441,54 @@ a { color: inherit; }
 /* My Work on phones: just the cards, no scene behind them */
 #stage.m #work .wbgs { display: none; }
 #stage.m #work .clipped::after { display: none; }
+
+/* ========== Splash, richer timeline (same length; the dot hand-off is unchanged) ========== */
+@property --sweep { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.sp-stars { position: absolute; inset: -6%; background: url(assets/stars.png) center / cover no-repeat; opacity: 0; transform: scale(1.08); }
+#splash.play .sp-stars { animation: sp-stars 5s .05s var(--smooth) forwards, sp-twinkle 3.2s 1.8s ease-in-out infinite alternate; }
+@keyframes sp-stars { 0% { opacity: 0; transform: scale(1.08); } 30% { opacity: .55; } 100% { opacity: .55; transform: scale(1); } }
+@keyframes sp-twinkle { to { filter: brightness(1.35); } }
+
+/* the whole scene drifts gently towards the viewer while it builds */
+.sp-group { transform-origin: 720px 520px; }
+#splash.play .sp-group { animation: sp-drift 4.3s .1s var(--smooth) forwards, sp-dim 1.4s 4.1s var(--smooth-io) forwards; }
+@keyframes sp-drift { from { transform: scale(.94); } to { transform: none; } }
+
+/* the gold line glows while it draws */
+#splash.play .sp-line { animation: sp-line 1.4s .15s forwards, sp-glow 1.6s .9s ease-out forwards; }
+@keyframes sp-glow { 0% { box-shadow: 0 0 0 rgba(243, 217, 168, 0); } 35% { box-shadow: 0 0 22px 3px rgba(243, 217, 168, .75); } 100% { box-shadow: 0 0 8px rgba(243, 217, 168, .25); } }
+
+/* moon & flowers are drawn in a sweep, like a pen following the curve */
+.sp-moon { clip-path: none; transform: translateY(18px);
+  -webkit-mask-image: conic-gradient(from 205deg at 53% 62%, #000 var(--sweep), transparent calc(var(--sweep) + 28deg));
+          mask-image: conic-gradient(from 205deg at 53% 62%, #000 var(--sweep), transparent calc(var(--sweep) + 28deg)); }
+#splash.play .sp-moon { animation: sp-draw 1.7s .95s cubic-bezier(.45, .05, .25, 1) forwards; }
+@keyframes sp-draw { 0% { opacity: 0; --sweep: 0deg; } 12% { opacity: 1; } 100% { opacity: 1; --sweep: 392deg; transform: none; } }
+
+/* rays burst out of a soft blur */
+.sp-rays { transform: scale(.5) rotate(-10deg); filter: blur(8px); }
+#splash.play .sp-rays { animation: sp-burst 1.3s 1.55s cubic-bezier(.2, 1.3, .35, 1) forwards; }
+@keyframes sp-burst { 0% { opacity: 0; } 35% { opacity: 1; } 100% { opacity: 1; transform: none; filter: blur(0); } }
+
+/* sparkles pop in, then keep twinkling */
+.sp-arc { clip-path: none; transform-origin: 30% 30%; transform: scale(.6) rotate(-18deg); }
+#splash.play .sp-arc { animation: sp-pop .9s 1.95s cubic-bezier(.3, 1.6, .5, 1) forwards, sp-spark 1.6s 2.9s ease-in-out infinite alternate; }
+@keyframes sp-pop { from { opacity: 0; } 40% { opacity: 1; } to { opacity: 1; transform: none; } }
+@keyframes sp-spark { from { opacity: 1; } to { opacity: .55; } }
+
+/* "Jana / Portfolio" writes itself from left to right */
+.sp-text { opacity: 1; }
+.sp-text p { flex-direction: column; }
+.sp-text p span { display: block; opacity: 0;
+  -webkit-mask-image: linear-gradient(90deg, #000 45%, transparent 55%); mask-image: linear-gradient(90deg, #000 45%, transparent 55%);
+  -webkit-mask-size: 260% 100%; mask-size: 260% 100%; -webkit-mask-position: 100% 0; mask-position: 100% 0; mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
+  text-shadow: 0 0 18px rgba(243, 217, 168, 0); }
+#splash.play .sp-text { animation: none; }
+#splash.play .sp-w1 { animation: sp-write .8s 2.25s cubic-bezier(.4, 0, .3, 1) forwards, sp-halo 1.4s 2.6s ease-out forwards; }
+#splash.play .sp-w2 { animation: sp-write 1s 2.6s cubic-bezier(.4, 0, .3, 1) forwards, sp-halo 1.4s 3s ease-out forwards; }
+@keyframes sp-write { from { opacity: 1; -webkit-mask-position: 100% 0; mask-position: 100% 0; } to { opacity: 1; -webkit-mask-position: 0 0; mask-position: 0 0; } }
+@keyframes sp-halo { 40% { text-shadow: 0 0 22px rgba(243, 217, 168, .7); } 100% { text-shadow: 0 0 10px rgba(243, 217, 168, .2); } }
+
+@media (prefers-reduced-motion: reduce) {
+  #splash.play .sp-arc, #splash.play .sp-stars { animation-iteration-count: 1 !important; }
+}
