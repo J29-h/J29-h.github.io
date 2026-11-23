@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jana's Portfolio</title>
+  <meta name="description" content="Jana Malibari — software engineer, UX/UI designer, web and game developer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Prompt&family=Righteous&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=36" />
+</head>
+<body>
+  <main id="viewport">
+    <!-- 1440 × 1024 design canvas scaled to fit the window; phones get a portrait canvas (see script.js).
+         Everything inside the gold border is clipped to it (.clipped uses --clip, set by script.js). -->
+    <div id="stage" data-screen="splash" data-hdr="hide">
+
+      <!-- ===== Sky: nebula (pans between screens), star layer, twinkles ===== -->
+      <div id="sky" class="clipped" aria-hidden="true">
+        <img id="nebula" src="assets/bg-nebula.jpg" alt="" width="4964" height="5210" />
+        <img id="stars" src="assets/stars.png" alt="" />
+        <canvas id="twinkles"></canvas>
+      </div>
+
+      <!-- ===== SPLASH (Figma "SplashScreen" Component1 → 8) ===== -->
+      <section class="screen" id="splash" aria-label="Loading">
+        <div class="art">
+          <div class="sp-group">
+            <div class="sp-line"></div>
+            <div class="sp-art">
+              <img class="sp-moon" src="assets/splash-moon.png" alt="" width="1024" height="570" />
+              <img class="sp-rays" src="assets/splash-rays.png" alt="" width="1024" height="570" />
+              <img class="sp-arc" src="assets/splash-arc.png" alt="" width="1024" height="570" />
+            </div>
+            <div class="sp-text"><p>Jana<br />Portfolio</p></div>
+          </div>
+          <div class="sp-dot"></div>
+        </div>
+      </section>
+
+      <!-- ===== INTRO (Component1 → 5) ===== -->
+      <section class="screen" id="intro" aria-label="Welcome" data-s="1">
+        <div class="clipped"><div class="art">
+          <img class="side-arc left tw" src="assets/side-arc-left.svg" alt="" width="70" height="135" />
+          <img class="side-arc right tw" src="assets/side-arc-right.svg" alt="" width="70" height="135" />
+          <img class="ring-inner tw" src="assets/orbit-inner.svg" alt="" width="980" height="980" />
+          <div class="ring-outer tw">
+            <img class="ring-outer-img" src="assets/orbit-outer.png" alt="" />
+            <img class="ring-planet" src="assets/orbit-planet.svg" alt="" width="45" height="45" />
+          </div>
+          <div class="glare g2 tw" style="left:438px;top:324px;--gx:-723.5px;--gy:-294.5px"></div>
+          <div class="glare g2 tw" style="left:899px;top:595px;--gx:596.5px;--gy:460.5px"></div>
+          <div class="glare g1 tw" style="left:846px;top:261px;--gx:465px;--gy:-476px"></div>
+          <div class="glare g1 tw" style="left:486px;top:625px;--gx:-473.5px;--gy:548.5px"></div>
+          <p class="intro-welcome gold tw">WELCOME</p>
+          <h1 class="intro-title gold tw">TO JANA’S<br />PORTFOLIO</h1>
+          <button class="img-btn intro-explore tw" type="button" id="exploreBtn" aria-label="Explore">
+            <img src="assets/btn-explore.svg" alt="" width="300" height="133" />
+          </button>
+        </div></div>
+      </section>
+
+      <!-- ===== HOME (Component1 → 2) ===== -->
+      <section class="screen" id="home" aria-label="Home" data-s="1">
+        <div class="clipped"><div class="art">
+          <h1 class="home-name gold tw">Known as</h1>
+          <div class="home-titles tw" aria-live="polite">
+            <p class="gold">A Fresh Graduate University Student.</p>
+            <p class="gold">A Software Engineer with a Vision.</p>
+            <p class="gold">A UX / UI Designer Beyond the Ordinary.</p>
+            <p class="gold">A Web Developer Building the Web of Tomorrow, Today.</p>
+            <p class="gold">A Game Developer Turning Ideas into Playable Realities.</p>
+          </div>
+          <a class="img-btn home-btn cv tw" href="https://flowcv.com/resume/q9fv5rah4a" target="_blank" rel="noopener" aria-label="Download CV">
+            <img src="assets/btn-cv.svg" alt="" width="300" height="133" />
+          </a>
+          <a class="img-btn home-btn cover tw" href="https://drive.google.com/file/d/1KcH2TFDEt_dfm4a84JCfvKvSNfaRKTZW/view?usp=sharing" target="_blank" rel="noopener" aria-label="Cover letter">
+            <img src="assets/btn-cover.svg" alt="" width="300" height="133" />
+          </a>
+        </div></div>
+      </section>
+
+      <!-- ===== ABOUT (Default → Hover → Up → Content) ===== -->
+      <section class="screen" id="about" aria-label="About me" data-s="default">
+        <img class="about-frame" src="assets/about-frame.svg" alt="" width="1373" height="973" />
+        <div class="art">
+          <div class="card c7 tw"><img src="assets/tarot-back.png" alt="" /></div>
+          <div class="card c6 tw"><img src="assets/tarot-back.png" alt="" /></div>
+          <div class="card c8 tw"><img src="assets/tarot-back.png" alt="" /></div>
+          <!-- the three cards: Everyday / Professional / Freelance. Click a side card to bring it to the middle. -->
+          <div class="spread" id="spread">
+          <div class="tcard" data-c="everyday" data-slot="l" role="button" tabindex="0" aria-label="Everyday Me">
+            <span class="flip-inner">
+              <span class="face front cface" data-fill="everyday"></span>
+              <span class="face back tc-back"><img src="assets/tarot-back.png" alt="" /></span>
+            </span>
+          </div>
+          <div class="tcard" data-c="pro" data-slot="c" role="button" tabindex="0" aria-label="Professional Me">
+            <span class="flip-inner">
+              <span class="face front cface" data-fill="pro"></span>
+              <span class="face back tc-back"><img src="assets/tarot-back.png" alt="" /></span>
+            </span>
+          </div>
+          <div class="tcard" data-c="freelance" data-slot="r" role="button" tabindex="0" aria-label="Freelance Me">
+            <span class="flip-inner">
+              <span class="face front cface" data-fill="freelance"></span>
+              <span class="face back tc-back"><img src="assets/tarot-back.png" alt="" /></span>
+            </span>
+          </div>
+          </div>
+        </div>
+        <!-- phones: one readable card with a switch for the three -->
+        <div class="about-m" id="aboutM">
+          <div class="am-tabs" role="tablist" aria-label="About me">
+            <button type="button" role="tab" data-c="everyday">Everyday</button>
+            <button type="button" role="tab" data-c="pro" aria-selected="true">Professional</button>
+            <button type="button" role="tab" data-c="freelance">Freelance</button>
+          </div>
+          <div class="about-m-card" id="aboutMCard" role="button" tabindex="0" aria-label="Turn the card over">
+            <span class="flip-inner">
+              <span class="face front cface" data-fill="pro"></span>
+              <img class="face back" src="assets/tarot-back.png" alt="" />
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== WORK (Variant1 → 8): backgrounds + a sliding card stack ===== -->
+      <section class="screen" id="work" aria-label="My work" aria-roledescription="carousel">
+        <div class="clipped">
+          <div class="wbgs">
+            <img data-k="game-0" src="assets/bg-game-0.jpg" alt="" />
+            <div class="intro" data-k="game"></div>
+            <img data-k="web-0" src="assets/bg-web-0.jpg" alt="" />
+            <div class="intro" data-k="web"></div>
+            <img data-k="ux-0" src="assets/bg-ux-0.jpg" alt="" />
+            <div class="intro" data-k="ux"></div>
+            <img data-k="program-0" src="assets/bg-program-0.jpg?v=20" alt="" />
+            <div class="intro" data-k="program"></div>
+          </div>
+        </div>
+        <!-- as in Figma, the card stack lies on top of the gold border (not clipped) -->
+        <div class="art work-art">
+          <div class="stack" data-k="game"><img src="assets/stack-game.png" alt="" /><button class="explore" type="button"><span>EXPLORE</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></i></button></div>
+          <div class="stack" data-k="web"><img src="assets/stack-web.png" alt="" /><button class="explore" type="button"><span>EXPLORE</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></i></button></div>
+          <div class="stack" data-k="ux"><img src="assets/stack-ux.png" alt="" /><button class="explore" type="button"><span>EXPLORE</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></i></button></div>
+          <div class="stack" data-k="program"><img src="assets/stack-program.png" alt="" /><button class="explore" type="button"><span>EXPLORE</span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></i></button></div>
+        </div>
+        <div class="art work-chrome">
+          <img class="work-ornament" src="assets/work-ornament.svg" alt="" width="199.5" height="61" />
+        </div>
+        <div class="work-nav">
+          <button class="work-arrow prev" type="button" aria-label="Previous category" disabled>
+            <img src="assets/arrow-a.svg" alt="" width="42.1154" height="73" />
+          </button>
+          <div class="work-dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <button class="work-arrow next" type="button" aria-label="Next category">
+            <img src="assets/arrow-a.svg" alt="" width="42.1154" height="73" />
+          </button>
+        </div>
+        <p class="sr-only" aria-live="polite" id="workLabel"></p>
+      </section>
+
+      <!-- ===== CONTACT (Component21 → Variant2 → Variant3) ===== -->
+      <section class="screen" id="contact" aria-label="Contact" data-s="1">
+        <div class="clipped"><div class="art">
+          <ul class="contact-list">
+            <li style="--i:0">
+              <img class="contact-icon mail tw" src="assets/icon-mail.svg" alt="" width="53" height="42" />
+              <a class="gold tw" href="mailto:janamalibari21@gmail.com">janamalibari21@gmail.com</a>
+            </li>
+            <li style="--i:1">
+              <img class="contact-icon tw" src="assets/icon-linkedin.svg" alt="" width="53" height="53" />
+              <a class="gold tw" href="https://www.linkedin.com/in/jana-malibari-" target="_blank" rel="noopener">Jana’s LinkedIn Profile</a>
+            </li>
+            <li style="--i:2">
+              <img class="contact-icon tw" src="assets/icon-github.svg" alt="" width="53" height="53" />
+              <a class="gold tw" href="https://github.com/J29-h" target="_blank" rel="noopener">Jana’s GitHub Profile</a>
+            </li>
+          </ul>
+          <button class="contact-open tw" type="button" id="openForm" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+            <span>SEND ME A MESSAGE</span>
+          </button>
+        </div></div>
+        <img class="contact-frame" src="assets/contact-frame.png" alt="" />
+      </section>
+
+      <!-- ===== Gold frame (Intro, Home, Work; on phones every screen) ===== -->
+      <div id="frame" aria-hidden="true">
+        <div class="frame-border"><img src="assets/frame-border.svg" alt="" width="971" height="1373" /></div>
+        <img class="corner" src="assets/corner-dot.svg" alt="" style="left:1396px;top:991px" />
+        <img class="corner" src="assets/corner-dot-2.svg" alt="" style="left:36px;top:991px" />
+        <img class="corner" src="assets/corner-dot.svg" alt="" style="left:1396px;top:29px" />
+        <img class="corner" src="assets/corner-dot.svg" alt="" style="left:36px;top:29px" />
+        <div class="moons">
+          <img src="assets/moon-5.svg" alt="" style="left:621px" width="21.0127" height="31" />
+          <img src="assets/moon-1.svg" alt="" style="left:646px" width="24.75" height="31" />
+          <img src="assets/moon-4.svg" alt="" style="left:675px" width="24.9971" height="31" />
+          <img src="assets/moon-full.svg" alt="" style="left:704.5px" width="31" height="31" />
+          <img class="flip-x" src="assets/moon-3.svg" alt="" style="left:739px" width="24.9971" height="31" />
+          <img class="flip-x" src="assets/moon-2.svg" alt="" style="left:768px" width="24.75" height="31" />
+          <img class="flip-x" src="assets/moon-6.svg" alt="" style="left:797px" width="21.0127" height="31" />
+        </div>
+        <div class="hdr hdr-left">
+          <img class="pisces-constellation" src="assets/pisces-constellation.png" alt="" />
+          <div class="frame-dots" data-dots="188,206,224,242,259.67,278"></div>
+        </div>
+        <div class="hdr hdr-right">
+          <img class="pisces-fish" src="assets/pisces-fish.png" alt="" />
+          <div class="frame-dots" data-dots="1148,1166,1184,1202,1219.67,1238"></div>
+        </div>
+        <!-- portrait frame for phones, drawn by script.js -->
+        <div class="m-frame" id="mFrame"></div>
+      </div>
+
+      <!-- ===== Side navigation (Home / About / Work / Contact) ===== -->
+      <nav id="nav" aria-label="Main">
+        <div class="nav-shade"></div>
+        <div class="nav-bar"></div>
+        <div class="nav-hit"></div>
+        <a href="#home" data-go="home" style="--y:372px;--i:0">
+          <span class="nav-icon"><img class="off" src="assets/icon-home-line.svg" alt="" /><img class="on" src="assets/icon-home.svg" alt="" /></span>
+          <span class="nav-label gold">HOME</span>
+        </a>
+        <a href="#about" data-go="about" style="--y:456px;--i:1">
+          <span class="nav-icon"><img class="off" src="assets/icon-user.svg" alt="" /><img class="on" src="assets/icon-user-active.svg" alt="" /></span>
+          <span class="nav-label gold">ABOUT ME</span>
+        </a>
+        <a href="#work" data-go="work" style="--y:540px;--i:2">
+          <span class="nav-icon"><img class="off" src="assets/icon-briefcase.svg" alt="" /><img class="on" src="assets/icon-briefcase-active.svg" alt="" /></span>
+          <span class="nav-label gold">MY WORK</span>
+        </a>
+        <a href="#contact" data-go="contact" style="--y:624px;--i:3">
+          <span class="nav-icon"><img class="off" src="assets/icon-messages.svg" alt="" /><img class="on" src="assets/icon-messages-active.svg" alt="" /></span>
+          <span class="nav-label gold">CONTACT</span>
+        </a>
+      </nav>
+      <!-- ===== Project viewer: opens from each Explore button ===== -->
+      <div class="proj" id="proj" role="dialog" aria-modal="true" aria-labelledby="projCat" inert>
+        <header class="proj-bar">
+          <span class="proj-cat gold" id="projCat"></span>
+          <div class="proj-tabs" id="projTabs" role="tablist"></div>
+          <button class="proj-close" type="button" aria-label="Close projects" data-pclose>&times;</button>
+        </header>
+        <div class="proj-scroll" id="projScroll"></div>
+      </div>
+      <!-- ===== Message form: opens on top of everything ===== -->
+      <div class="modal" id="formModal" role="dialog" aria-modal="true" aria-labelledby="cfTitle" inert>
+        <div class="modal-backdrop" data-close></div>
+        <form class="cform" id="cform" novalidate>
+            <button class="cf-close" type="button" data-close aria-label="Close the form"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+            <h2 class="cf-title gold" id="cfTitle">Send me a message</h2>
+            <div class="cf-grid">
+              <label class="cf-field"><span>Name</span><input name="name" autocomplete="name" required placeholder="Your name" /></label>
+              <label class="cf-field"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" placeholder="Optional" /></label>
+              <label class="cf-field"><span>Email</span><input name="email" type="email" autocomplete="email" required placeholder="you@example.com" /></label>
+              <label class="cf-field"><span>Type of request</span>
+                <select name="type" required>
+                  <option value="" selected disabled>Choose one</option>
+                  <option>Freelance project</option>
+                  <option>Job opportunity</option>
+                  <option>Collaboration</option>
+                  <option>Question</option>
+                  <option>Something else</option>
+                </select>
+              </label>
+              <label class="cf-field cf-wide"><span>Message</span>
+                <textarea name="message" rows="5" required placeholder="Tell me briefly what you need (up to 300 words)"></textarea>
+                <small class="cf-count" id="cfCount">0 / 300 words</small>
+              </label>
+            </div>
+            <div class="cf-foot">
+              <p class="cf-note" id="cfNote" aria-live="polite"></p>
+              <button class="cf-send" type="submit">Send <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </main>
+  <script src="projects.js?v=36"></script>
+  <script src="script.js?v=36"></script>
+</body>
+</html>

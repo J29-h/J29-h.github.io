@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="280" viewBox="0 0 140 280"><defs>
+<linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6dfae"/><stop offset=".35" stop-color="#b98a4e"/><stop offset=".65" stop-color="#f0d19a"/><stop offset="1" stop-color="#8f6a3a"/></linearGradient>
+<linearGradient id="scr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a24a78"/><stop offset=".38" stop-color="#6a2f6a"/><stop offset=".64" stop-color="#2d2b54"/><stop offset="1" stop-color="#22223d"/></linearGradient>
+<radialGradient id="glow" cx=".5" cy=".2" r=".6"><stop offset="0" stop-color="#ff9ccf" stop-opacity=".35"/><stop offset="1" stop-color="#ff9ccf" stop-opacity="0"/></radialGradient>
+</defs>
+<rect x="2" y="2" width="136" height="276" rx="24" fill="#0b0a12" stroke="url(#rim)" stroke-width="2.5"/>
+<rect x="9" y="9" width="122" height="262" rx="18" fill="url(#scr)"/><rect x="9" y="9" width="122" height="262" rx="18" fill="url(#glow)"/>
+<rect x="46" y="9" width="48" height="13" rx="6.5" fill="#0b0a12"/>
+<path d="M60 116 L42 140 L60 164 M80 116 L98 140 L80 164" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="30" y="200" width="80" height="7" rx="3.5" fill="#fff" opacity=".55"/>
+<rect x="42" y="216" width="56" height="6" rx="3" fill="#fff" opacity=".28"/>
+<rect x="50" y="260" width="40" height="4" rx="2" fill="#fff" opacity=".6"/>
+</svg>
